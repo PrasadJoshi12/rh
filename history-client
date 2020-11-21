@@ -1,0 +1,26 @@
+    1  clear
+    2  mkdir /smb
+    3  rm -rvf /smb
+    4  mkdir /data
+    5  vi /etc/fstab
+    6  mount -av
+    7  clear
+    8  df -hT
+    9  mkdir /mydata
+   10  vi /etc/fstab
+   11  vi /root/sec
+   12  mount -av
+   13  mkdir /mydata
+   14  vi /root/sec
+   15  vi /etc/fstab
+   16  mount -av
+   17  clear
+   18  df -hT
+   19  mkdir /nfsdata
+   20  vi /etc/fstab
+   21  mount -av
+   22  clear
+   23  df -hT
+   24  ip a
+   25  vi /etc/hosts
+   26  curl test.example.com
