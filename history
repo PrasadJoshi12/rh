@@ -1,0 +1,88 @@
+    1  clear
+    2  mkdir /smb
+    3  history
+    4  man semange-fcontext
+    5  man semanage-fcontext
+    6  semanage fcontext -a -t samba_share_t "/smb(/.*)?"
+    7  restorecon -Rv /smb
+    8  useradd prasad
+    9  smbpasswd -a prasad
+   10  clear
+   11  setfacl -m u:prasad:rwx /smb
+   12  vi /etc/samba/smb.conf
+   13  systemctl restart smb nmb
+   14  systemctl enable smb nmb
+   15  firewall-cmd --permanent --add-service=samba
+   16  firewall-cmd --reload
+   17  clear
+   18  useradd amit
+   19*
+   20  smbpasswd -a amit
+   21  smbpasswd -a deep
+   22  mkdir /smbdata
+   23  semanage fcontext -a -t samba_share_t "/smbdata(/.*)?"
+   24  setfacl -m u:amit:rwx /smbdata
+   25  setfacl -m u:deep:r-x /smbdata
+   26  getsebool -a
+   27  getsebool -a | grep samba
+   28  setsebool -P samba_export_all_ro on
+   29  setsebool -P samba_export_all_rw on
+   30  clear
+   31  vi /etc/samba/
+   32  vi /etc/samba/smb.conf
+   33  systemctl restart smb nmb
+   34  vi /etc/samba/smb.conf
+   35  mkdir /nfs
+   36  vi /etc/exports
+   37  systemctl restart nfs-server
+   38  systemctl enable nfs-server
+   39  clear
+   40  firewall-cmd --permanent --add-service=nfs
+   41  firewall-cmd --reload
+   42  yum install httpd -y
+   43  cp /usr/share/doc/httpd-2.4.6/httpd-vhosts.conf /etc/httpd/conf.d/one.conf
+   44  cat > /var/www/html/index.html
+   45  clear
+   46  vi /etc/httpd/conf.d/one.conf
+   47  httpd -t
+   48  systemctl restart httpd
+   49  firewall-cmd --permanent --add-service=http
+   50  firewall-cmd --reload
+   51  clear
+   52  cp /etc/httpd/conf.d/one.conf /etc/httpd/conf.d/two.conf
+   53  vi /etc/httpd/conf.d/two.conf
+   54  httpd -t
+   55  mkdir /var/www/secure
+   56  cat > /var/www/secure/index.html
+   57  clear
+   58  ip a
+   59  cat  /var/www/secure/index.html
+   60  systemctl restart httpd
+   61  clear
+   62  history
+   63  clear
+   64  openssl genrsa -out server.key 2048
+   65  openssl req -new -key server.key -out example-ca.csr
+   66  clear
+   67  openssl x509 -req -in example-ca.csr -signkey server.key -days 365 -out server.crt
+   68  cp server.key /etc/pki/tls/private/
+   69  cp server.crt /etc/pki/tls/certs/
+   70  cp server.csr /etc/pki/tls/certs/
+   71  cp example-ca.csr /etc/pki/tls/certs/
+   72  yum install mod_ssl -y
+   73  clear
+   74  cd /etc/httpd/conf.d
+   75  clear
+   76  cp ssl.conf myssl.conf
+   77  vi myssl.conf
+   78  systemctl restart httpd
+   79  firewall-cmd --permanent --add-service=http
+   80  firewall-cmd --permanent --add-service=https
+   81  firewall-cmd --reload
+   82  curl -k https://server.example.com
+   83  clear
+   84  man firewalld.richalanguage
+   85  man firewalld.richlanguage
+   86  firewall-cmd --permanent --add-rich-rule "rule family="ipv4" source address="0.0.0.0/0" forward-port  to-port="5050" protocol="tcp" port="80""
+   87  firewall-cmd --reload
+   88  history
