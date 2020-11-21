@@ -1,6 +1,6 @@
     1  clear
-    2  mkdir /smb
-    3  rm -rvf /smb
+    2  yum install samba-client cifs-utils -y
+    3  yum install nfs-utils -y
     4  mkdir /data
     5  vi /etc/fstab
     6  mount -av
