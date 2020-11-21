@@ -97,3 +97,19 @@
    98  nmcli con mod team0 ipv4.method static
    99  nmcli con down team0; nmcli conn up team0
    100  nmcli con up con1;nmcli conn up con2
+   108  mkdir /var/www/myweb
+   109  cat > /var/www/myweb/index.html
+   110  clear
+   111  cp /etc/httpd/conf.d/one.conf /etc/httpd/conf.d/three.conf
+   112  vi /etc/httpd/conf.d/three.conf
+   113  vi /etc/httpd/conf/httpd.conf
+   114  man semanage-port
+   115
+   116  httpd -t
+   117  systemctl restart httpd
+   118  firewall-cmd --permanent --add-port=28080/tcp
+   119  firewall-cmd --reload
+   120  clear
+   121  vi /etc/hosts
+   122  curl server1.example.com:28080
+   123 history
