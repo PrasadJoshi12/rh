@@ -86,3 +86,14 @@
    86  firewall-cmd --permanent --add-rich-rule "rule family="ipv4" source address="0.0.0.0/0" forward-port  to-port="5050" protocol="tcp" port="80""
    87  firewall-cmd --reload
    88  history
+   90  cat /usr/share/doc/teamd-1.25/example_configs/activebackup_nsna_ping_1.conf
+   91  #nmcli con add type team con-name team0 ifname team0 config '{"runner":{"name": "activebackup"}}'
+   92  nmcli con add type team con-name team0 ifname team0 config '{"runner":{"name": "activebackup"}}'
+   93  #nmcli con add type team-slave con-name con1 ifname ens33 config master team0
+   94  ip a
+   95  nmcli con add type team-slave con-name con1 ifname ens36 config master team0
+   96  nmcli con add type team-slave con-name con1 ifname ens37 config master team0
+   97  nmcli con mod team0 ipv4.address 192.168.1.100
+   98  nmcli con mod team0 ipv4.method static
+   99  nmcli con down team0; nmcli conn up team0
+   100  nmcli con up con1;nmcli conn up con2
