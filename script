@@ -1,0 +1,19 @@
+#!/bin/bash
+marks=0
+echo "Enter your name: "
+read name
+
+#Check docker container running or not
+if [ "$(podman ps | grep -o httpd)" > 1 ]
+then
+        echo "docker Container is running"
+        (( marks += 10 ))
+        if curl -s --head  --request GET http://localhost:5001 | grep "200 OK" > /dev/null; then
+                (( marks += 10 ))
+        #else
+                #echo "mysite.com is DOWN"
+        fi
+fi
+
+
+echo "$name and $marks"
