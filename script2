@@ -1,0 +1,15 @@
+echo "Enter mysql root password"
+read passwd
+marks = 0
+if ! mysql -u root -p$passwd -e ' use Class' 2> /dev/null ; then
+        echo "Database is not CReated"
+fi
+
+
+
+if [ $(echo "SELECT COUNT(*) FROM mysql.user WHERE user = 'harry'" | mysql -p$passwd  | tail -n1) -gt 0 ]
+then
+  echo "User exists"
+else
+  echo "User doesn't exist"
+fi
