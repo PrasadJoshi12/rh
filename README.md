@@ -1,8 +1,8 @@
 # Solution
   - Use docker run command to create a container `-d` option is used to run container in background.
-   ```console
+    ```console
    docker run -d infracloudio/csvserver:latest
-   ```
+    ```
   - Check the container is runnig or not using following command.
      ```console
     docker ps
