@@ -27,7 +27,7 @@ then
              fi
         fi
 
-elif [ $tsk = 2 ];
+elif [ $tsk = 3 ];
 then
         echo "Enter your name"
         read name
@@ -43,16 +43,16 @@ then
                 echo "name: $name"
                 echo "email id: $email"
                 echo "college: $college"
-                echo "Task2 is not completed"
+                echo "Task3 is not completed"
        else 
                 echo "name: $name"
                 echo "email id: $email"
                 echo "college: $college"
                 echo "Database is Created"
-                echo "Task2 completed Successfully"
+                echo "Task3 completed Successfully"
 
        fi
-elif [ $tsk = 3 ];
+elif [ $tsk = 4 ];
 then
         echo "Enter your name"
         read name
@@ -68,16 +68,16 @@ then
                 echo "name: $name"
                 echo "email id: $email"
                 echo "college: $college"
-                echo "Task3 completed Successfully"
+                echo "Task4 completed Successfully"
         else
                 echo "name: $name"
                 echo "email id: $email"
                 echo "college: $college"
-                echo "Task3 is not completed"
+                echo "Task4 is not completed"
                 echo "User doesn't exist"
         fi
 
-elif [ $tsk = 4 ];
+elif [ $tsk = 2 ];
 then
         echo "Enter your name"
         read name
@@ -86,9 +86,9 @@ then
         echo "Enter you college name"
         read college
   
-         if [ "$(docker ps | grep -o myweb)" > 1 ]
+         if [ "$(docker ps | grep -o mydb)" > 1 ]
         then
-                if ! mysql -u root -predhat -e ' use mysql' 2> /dev/null ; then
+                if ! mysql -u root -pmypass -e ' use mysql' 2> /dev/null ; then
                         echo "name: $name"
                         echo "email id: $email"
                         echo "college: $college"
