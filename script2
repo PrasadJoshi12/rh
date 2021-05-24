@@ -77,9 +77,30 @@ then
                 echo "User doesn't exist"
         fi
 
-
-
 elif [ $tsk = 4 ];
+then
+        echo "Enter your name"
+        read name
+        echo "Enter your email"
+        read email
+        echo "Enter you college name"
+        read college
+  
+         if [ "$(docker ps | grep -o myweb)" > 1 ]
+        then
+                if ! mysql -u root -predhat -e ' use mysql' 2> /dev/null ; then
+                        echo "name: $name"
+                        echo "email id: $email"
+                        echo "college: $college"
+                        echo "Task4 is not completed"
+        else
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task4 is completed successfully"
+        fi
+
+elif [ $tsk = 5 ];
 then
         echo "Enter your name"
         read name
@@ -92,12 +113,12 @@ then
                 echo "name: $name"
                 echo "email id: $email"
                 echo "college: $college"
-                echo "Task4 completed Successfully"
+                echo "Task5 completed Successfully"
         else
                 echo "name: $name"
                 echo "email id: $email"
                 echo "college: $college"
-                echo "Task4 is not completed"
+                echo "Task5 is not completed"
                 echo "User does not exist"
         fi
 
