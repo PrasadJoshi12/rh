@@ -14,14 +14,19 @@ then
         then
              echo "docker Container is running"
              if curl -s --head  --request GET http://localhost:8080 | grep "200 OK" > /dev/null; then
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task1 completed Successfully"
              else
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task1 is not completed "
                 echo "localhost:8080 is DOWN"
              fi
         fi
-echo "name: $name"
-echo "email id: $email"
-echo "college: $college"
-echo "Task1 completed Successfully"
+
 elif [ $tsk = 2 ];
 then
         echo "Enter your name"
@@ -34,15 +39,19 @@ then
        echo "Enter mysql root password"
        read passwd
        if ! mysql -u root -p$passwd -e ' use Class' 2> /dev/null ; then
-         echo "Database is not Created"
+                echo "Database is not Created"
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task2 is not completed"
        else 
-         echo "Database is Created"
-       fi
-echo "name: $name"
-echo "email id: $email"
-echo "college: $college"
-echo "Task2 completed Successfully"
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Database is Created"
+                echo "Task2 completed Successfully"
 
+       fi
 elif [ $tsk = 3 ];
 then
         echo "Enter your name"
@@ -55,16 +64,20 @@ then
         pass="potter"
         if [ $(echo "SELECT COUNT(*) FROM mysql.user WHERE user = 'harry'" | mysql -p$pass  | tail -n1) -gt 0 ]
         then
-            echo "User exists"
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task3 completed Successfully"
         else
-            echo "User doesn't exist"
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task3 is not completed"
+                echo "User doesn't exist"
         fi
 
 
-echo "name: $name"
-echo "email id: $email"
-echo "college: $college"
-echo "Task3 completed Successfully"
+
 elif [ $tsk = 4 ];
 then
         echo "Enter your name"
@@ -75,14 +88,18 @@ then
         read college
   
         if id "$1" >/dev/null 2>&1; then
-           echo "User exists"
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task4 completed Successfully"
         else
-           echo "User does not exist"
+                echo "name: $name"
+                echo "email id: $email"
+                echo "college: $college"
+                echo "Task4 is not completed"
+                echo "User does not exist"
         fi
-echo "name: $name"
-echo "email id: $email"
-echo "college: $college"
-echo "Task4 completed Successfully"
+
 else
         echo "This is not valid task no"
         
