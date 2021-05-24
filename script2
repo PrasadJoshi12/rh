@@ -1,23 +1,91 @@
-echo "Enter mysql root password"
-read passwd
-marks = 0
-if ! mysql -u root -p$passwd -e ' use Class' 2> /dev/null ; then
-        echo "Database is not CReated"
-fi
-
-
-
-if [ $(echo "SELECT COUNT(*) FROM mysql.user WHERE user = 'harry'" | mysql -p$passwd  | tail -n1) -gt 0 ]
-then
-  echo "User exists"
-else
-  echo "User doesn't exist"
-fi
-
-
 #!/bin/bash
-if id "$1" >/dev/null 2>&1; then
-        echo "user exists"
+echo "Enter Task no"
+read tsk
+if [ $tsk = 1 ];
+then
+        echo "Enter your name"
+        read name
+        echo "Enter your email"
+        read email
+        echo "Enter you college name"
+        read college
+        #Check docker container running or not
+        if [ "$(docker ps | grep -o httpd)" > 1 ]
+        then
+             echo "docker Container is running"
+             if curl -s --head  --request GET http://localhost:8080 | grep "200 OK" > /dev/null; then
+                (( marks += 10 ))
+             else
+                echo "localhost:8080 is DOWN"
+             fi
+        fi
+echo "name: $name"
+echo "email id: $email"
+echo "college: $college"
+echo "Task1 completed Successfully"
+elif [ $tsk = 2 ];
+then
+        echo "Enter your name"
+        read name
+        echo "Enter your email"
+        read email
+        echo "Enter you college name"
+        read college
+
+       echo "Enter mysql root password"
+       read passwd
+       if ! mysql -u root -p$passwd -e ' use Class' 2> /dev/null ; then
+         echo "Database is not Created"
+       else 
+         echo "Database is Created"
+         (( marks += 10 ))
+       fi
+echo "name: $name"
+echo "email id: $email"
+echo "college: $college"
+echo "Task2 completed Successfully"
+
+elif [ $tsk = 3 ];
+then
+        echo "Enter your name"
+        read name
+        echo "Enter your email"
+        read email
+        echo "Enter you college name"
+        read college
+
+        pass="potter"
+        if [ $(echo "SELECT COUNT(*) FROM mysql.user WHERE user = 'harry'" | mysql -p$pass  | tail -n1) -gt 0 ]
+        then
+            echo "User exists"
+        else
+            echo "User doesn't exist"
+        fi
+
+
+echo "name: $name"
+echo "email id: $email"
+echo "college: $college"
+echo "Task3 completed Successfully"
+elif [ $tsk = 4 ];
+then
+        echo "Enter your name"
+        read name
+        echo "Enter your email"
+        read email
+        echo "Enter you college name"
+        read college
+  
+        if id "$1" >/dev/null 2>&1; then
+           echo "User exists"
+        else
+           echo "User does not exist"
+        fi
+echo "name: $name"
+echo "email id: $email"
+echo "college: $college"
+echo "Task4 completed Successfully"
 else
-        echo "user does not exist"
+        echo "This is not valid task no"
+        
 fi
