@@ -61,8 +61,9 @@ then
         echo "Enter you college name"
         read college
 
-        pass="potter"
-        if [ $(echo "SELECT COUNT(*) FROM mysql.user WHERE user = 'harry'" | mysql -p$pass  | tail -n1) -gt 0 ]
+        echo "Enter mysql root password"
+        read passwd
+        if [ $(echo "SELECT COUNT(*) FROM mysql.user WHERE user = 'harry'" | mysql -h172.18.0.2 -p$passwd | tail -n1) -gt 0 ]
         then
                 echo "name: $name"
                 echo "email id: $email"
