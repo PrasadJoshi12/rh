@@ -10,14 +10,14 @@ then
         echo "Enter you college name"
         read college
         #Check docker container running or not
-        if [ "$(docker ps | grep -o httpd)" > 1 ]
+        if [ "$(docker ps | grep -o myweb)" > 1 ]
         then
-             echo "docker Container is running"
              if curl -s --head  --request GET http://localhost:8080 | grep "200 OK" > /dev/null; then
                 echo "name: $name"
                 echo "email id: $email"
                 echo "college: $college"
-                echo "Task1 completed Successfully"
+                echo "Docker container is running"
+                echo "Task1 completed successfully"
              else
                 echo "name: $name"
                 echo "email id: $email"
