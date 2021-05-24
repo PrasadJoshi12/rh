@@ -93,6 +93,7 @@ then
                         echo "email id: $email"
                         echo "college: $college"
                         echo "Task4 is not completed"
+                 fi
         else
                 echo "name: $name"
                 echo "email id: $email"
