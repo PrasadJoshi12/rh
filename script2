@@ -14,7 +14,6 @@ then
         then
              echo "docker Container is running"
              if curl -s --head  --request GET http://localhost:8080 | grep "200 OK" > /dev/null; then
-                (( marks += 10 ))
              else
                 echo "localhost:8080 is DOWN"
              fi
@@ -38,7 +37,6 @@ then
          echo "Database is not Created"
        else 
          echo "Database is Created"
-         (( marks += 10 ))
        fi
 echo "name: $name"
 echo "email id: $email"
